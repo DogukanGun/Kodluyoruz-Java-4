@@ -23,6 +23,13 @@ public class User extends BaseEntity {
     @Builder.Default
     private String id = UUID.randomUUID().toString();
 
+    @Column(name = "basket_id")
+    private Integer userId;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id")
+    private Basket basket;
+
     @Column()
     private String username;
 

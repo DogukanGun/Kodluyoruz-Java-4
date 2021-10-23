@@ -23,18 +23,14 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @NotBlank
     @Column(unique = true,nullable = false,length = 100)
     private String name;
 
-    @NotBlank
     @Column(nullable = false,length = 300)
     private String description;
 
-    @NotBlank
     @Column(nullable = false,length = 50)
     private String price;
-
 
     @Column(name = "category_id")
     private Integer categoryId;
