@@ -34,5 +34,8 @@ public class Basket extends BaseEntity{
     @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY,mappedBy = "basket")
     private List<BasketItem> basketItems;
 
+    @OneToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL,mappedBy = "basket")
+    private Checkout checkout;
+
     private Boolean isOrdered;
 }
