@@ -6,6 +6,7 @@ import com.kodluyoruz.dogukanaligundoganhm4.model.dto.BasketItemDto;
 import com.kodluyoruz.dogukanaligundoganhm4.model.entity.Basket;
 import com.kodluyoruz.dogukanaligundoganhm4.model.request.UpdateCreateBasketItemRequest;
 import com.kodluyoruz.dogukanaligundoganhm4.model.request.UpdateCreateBasketRequest;
+import com.kodluyoruz.dogukanaligundoganhm4.model.request.UpdateCreateOrderRequest;
 import com.kodluyoruz.dogukanaligundoganhm4.repository.BasketRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -28,6 +29,12 @@ public class BasketService {
         return BASKET_MAPPER.convertToBasketDto(basketRepository.save(basket));
     }
 
+
+    public void setOrder(int id, boolean status){
+        Basket basket=basketRepository.findById(id).orElseThrow(()->new NotFoundException("Basket cannot found"));
+        basket.setIsOrdered(status);
+        basketRepository.save(basket);
+    }
     public void deleteBasket(int id){
         basketRepository.deleteById(id);
     }

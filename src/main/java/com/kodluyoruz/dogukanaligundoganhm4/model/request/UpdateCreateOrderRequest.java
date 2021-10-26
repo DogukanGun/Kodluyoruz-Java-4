@@ -10,7 +10,8 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class UpdateCreateBasketRequest {
+public class UpdateCreateOrderRequest {
+
     private Integer userId;
-    private Boolean isOrdered;
+    private Integer basketId;
 }

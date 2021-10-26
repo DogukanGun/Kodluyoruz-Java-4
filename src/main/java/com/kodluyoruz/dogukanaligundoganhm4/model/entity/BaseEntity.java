@@ -1,7 +1,6 @@
 package com.kodluyoruz.dogukanaligundoganhm4.model.entity;
 
-import com.sun.org.apache.xpath.internal.operations.Bool;
-import lombok.AllArgsConstructor;
+ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
