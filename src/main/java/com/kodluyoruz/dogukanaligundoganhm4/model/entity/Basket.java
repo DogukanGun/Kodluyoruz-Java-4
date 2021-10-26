@@ -5,29 +5,34 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
 import java.util.List;
 
 @Data
-@Builder
 @Entity
 @Table(name = "baskets")
 @NoArgsConstructor
 @AllArgsConstructor
+@SuperBuilder
 public class Basket extends BaseEntity{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "user")
+    @Column(name = "user_id")
+    private Integer userId;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id",nullable = false,insertable = false,updatable = false)
     private User user;
 
+    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY,mappedBy = "basket")
+    private List<BasketItem> basketItems;
 
-
-    //burada product - basket iliskisinde her productda basket listesi mi olmali
-
-
-
+    private Boolean isOrdered;
 }

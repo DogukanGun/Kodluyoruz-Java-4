@@ -43,7 +43,7 @@ public class CategoryService {
     }
 
     public void deleteCategory(int id,boolean isDeleted){
-        categoryRepository.setDelete(id,isDeleted);
+        categoryRepository.deleteById(id);
     }
 
     public CategoryDto updateCategory(int id, UpdateCreateCategoryRequest updateCreateCategoryRequest){

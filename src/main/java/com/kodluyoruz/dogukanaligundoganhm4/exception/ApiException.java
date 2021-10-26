@@ -6,7 +6,6 @@ import org.springframework.http.HttpStatus;
 
 
 @Data
-@Builder
 public class ApiException extends RuntimeException{
 
     private HttpStatus httpStatus;

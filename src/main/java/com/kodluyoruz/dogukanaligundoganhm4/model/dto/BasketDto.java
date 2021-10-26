@@ -10,9 +10,8 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class CategoryDto {
+public class BasketDto {
 
     private Integer id;
-    private String name;
-//    private Integer parentId;
+    private Integer userId;
 }

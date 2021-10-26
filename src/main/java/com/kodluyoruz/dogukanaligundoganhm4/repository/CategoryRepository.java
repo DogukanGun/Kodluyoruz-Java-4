@@ -11,8 +11,8 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface CategoryRepository extends JpaRepository<Category,Integer> {
 
-    @Modifying(clearAutomatically = true)
-    @Query("Update #{#entityName} b set b.isDeleted= :isDeleted where b.id= :id")
-    int setDelete(@Param("id") Integer id, @Param("isDeleted") boolean isDeleted);
+//    @Modifying(clearAutomatically = true)
+//    @Query("Update #{#entityName} b set b.isDeleted= :isDeleted where b.id= :id")
+//    int setDelete(@Param("id") Integer id, @Param("isDeleted") boolean isDeleted);
 
 }

@@ -5,13 +5,14 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
 
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
+@SuperBuilder
 @Data
-@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "categories")
@@ -28,7 +29,7 @@ public class Category extends BaseEntity {
     private Integer parentId;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "parent_id",insertable = false,updatable = false)
+    @JoinColumn(name = "parent_id", nullable = false, insertable = false, updatable = false)
     private Category parentCategory;
 
     @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY,mappedBy = "category")

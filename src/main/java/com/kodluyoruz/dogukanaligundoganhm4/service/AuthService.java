@@ -3,7 +3,7 @@ package com.kodluyoruz.dogukanaligundoganhm4.service;
 
 import com.kodluyoruz.dogukanaligundoganhm4.exception.ApiException;
 import com.kodluyoruz.dogukanaligundoganhm4.model.entity.User;
-import com.kodluyoruz.dogukanaligundoganhm4.model.request.UpdateCreateUserRequest;
+import com.kodluyoruz.dogukanaligundoganhm4.model.request.user.UpdateUserRequest;
 import com.kodluyoruz.dogukanaligundoganhm4.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -17,16 +17,13 @@ public class AuthService {
 
     private final UserRepository userRepository;
 
-    public void resetPassword(UpdateCreateUserRequest updateCreateUserRequest){
-        User user = userRepository.findById(updateCreateUserRequest.getId()).orElseThrow(()->new ApiException("Wrong Password", HttpStatus.BAD_GATEWAY));
-        if (!user.getPassword().equals(updateCreateUserRequest.getOldPassword())){
+    public void resetPassword(int id,UpdateUserRequest updateUserRequest){
+        User user = userRepository.findById(id).orElseThrow(()->new ApiException("Wrong Password", HttpStatus.BAD_GATEWAY));
+        if (!user.getPassword().equals(updateUserRequest.getOldPassword())){
             throw new ApiException("Curren password is wrong",HttpStatus.NOT_FOUND);
         }
-        user.setPassword(updateCreateUserRequest.getNewPassword());
+        USER_MAPPER.updateUser(user,updateUserRequest);
+        userRepository.save(user);
     }
 
-    public void changeEmail(UpdateCreateUserRequest updateCreateUserRequest){
-        User user = userRepository.findById(updateCreateUserRequest.getId()).orElseThrow(()->new ApiException("Wrong Password", HttpStatus.BAD_GATEWAY));
-        user.setEmail(updateCreateUserRequest.getEmail());
-    }
 }

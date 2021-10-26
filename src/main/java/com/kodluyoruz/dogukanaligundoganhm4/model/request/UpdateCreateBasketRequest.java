@@ -10,9 +10,6 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class UpdateCreateUserRequest {
-    private String id;
-    private String oldPassword;
-    private String newPassword;
-    private String email;
+public class UpdateCreateBasketRequest {
+    private Integer userId;
 }

@@ -2,7 +2,8 @@ package com.kodluyoruz.dogukanaligundoganhm4.controller;
 
 
 import com.kodluyoruz.dogukanaligundoganhm4.model.dto.UserDto;
-import com.kodluyoruz.dogukanaligundoganhm4.model.request.UpdateCreateUserRequest;
+import com.kodluyoruz.dogukanaligundoganhm4.model.request.user.CreateUserRequest;
+import com.kodluyoruz.dogukanaligundoganhm4.model.request.user.UpdateUserRequest;
 import com.kodluyoruz.dogukanaligundoganhm4.service.AuthService;
 import com.kodluyoruz.dogukanaligundoganhm4.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -18,24 +19,29 @@ public class UserController {
     private final UserService userService;
     private final AuthService authService;
 
+    @PostMapping
+    public UserDto createUser(@RequestBody CreateUserRequest createUserRequest){
+        return userService.createUser(createUserRequest);
+    }
+
     @GetMapping
     public List<UserDto> getUsers(){
         return userService.getUsers();
     }
 
     @GetMapping("{id}")
-    public UserDto getUser(@PathVariable String id){
+    public UserDto getUser(@PathVariable int id){
         return userService.getUser(id);
     }
 
-    @PatchMapping("reset-password")
-    public void resetPassword(@RequestBody UpdateCreateUserRequest updateCreateUserRequest){
-        authService.resetPassword(updateCreateUserRequest);
+    @PatchMapping("update-user/{id}")
+    public void resetPassword(@PathVariable int id,@RequestBody UpdateUserRequest updateUserRequest){
+        authService.resetPassword(id,updateUserRequest);
     }
 
-    @PatchMapping("change-email")
-    public void changeEmail(@RequestBody UpdateCreateUserRequest updateCreateUserRequest){
-        authService.changeEmail(updateCreateUserRequest);
+    @DeleteMapping("{id}")
+    public void deleteUser(@PathVariable int id){
+        userService.deleteUser(id);
     }
 
 }

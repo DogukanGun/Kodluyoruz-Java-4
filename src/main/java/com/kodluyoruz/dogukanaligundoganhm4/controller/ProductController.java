@@ -33,7 +33,7 @@ public class ProductController {
         return productService.getProduct(id);
     }
 
-    @PutMapping
+    @PutMapping("{id}")
     public ProductDto updateProduct(@PathVariable int id,@RequestBody UpdateCreateProductRequest updateCreateProductRequest){
         return productService.updateProduct(id,updateCreateProductRequest);
     }
